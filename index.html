@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YORDAMCHI — Mahalla muammolari platformasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+ <a class="logo" onclick="go('home')"><svg width="34" height="34" viewBox="0 0 34 34"><rect width="34" height="34" rx="11" fill="currentColor"/><path d="M17 7.5c-4.1 0-7.2 3-7.2 7 0 4.7 5.3 9.4 6.6 10.5.4.3.8.3 1.2 0 1.3-1.1 6.6-5.8 6.6-10.5 0-4-3.1-7-7.2-7Z" fill="#fff"/><path d="m13.6 14.6 2.6 2.6 4.4-4.6" fill="none" stroke="#0B6B4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lt">YORDAMCHI</span></a>
+ <nav class="links" id="links"></nav>
+ <div class="r"><button class="bell" onclick="toggleN()" aria-label="Bildirishnomalar"><i class="fa-solid fa-bell" aria-hidden="true"></i><i id="bc">2</i></button><button class="bell" id="tg" onclick="toggleTheme()" aria-label="Rejimni almashtirish" title="Tungi / kunduzgi rejim"><i class="fa-solid fa-moon" aria-hidden="true"></i></button><button class="bell" onclick="cur=null;go('chat')" aria-label="Suhbatlar" title="Suhbatlar"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i><i id="cc" hidden>0</i></button><button class="btn ghost sm" id="login" onclick="login()">Kirish</button><button class="btn sm hide-m" onclick="go('report')"><i class="fa-solid fa-plus"></i> Muammo yuborish</button></div>
+</div><div class="npop" id="npop"></div></header>
+
+<main>
+<!-- HOME -->
+<section class="pg on" id="p-home">
+ <div class="wrap hero">
+  <div>
+   <span class="badge"><i class="fa-solid fa-house-flag"></i> MAHALLANGIZ UCHUN RAQAMLI YORDAM</span>
+   <h1>Mahalladagi muammoni birga hal qilamiz.</h1>
+   <p class="lead">Muammoni suratga oling, joylashuvingizni belgilang va YORDAMCHI orqali mas'ul tashkilotga yuboring.</p>
+   <div class="cta"><button class="btn" onclick="go('report')"><i class="fa-solid fa-camera-retro"></i> Muammo yuborish</button><button class="btn ghost" onclick="go('map')"><i class="fa-solid fa-map"></i> Xaritani ko‘rish</button></div>
+   <p class="slogan">Mahalladagi muammoni 24 soatda hal qilishga yordam beramiz.</p>
+  </div>
+  <div class="mapcard"><svg id="heroMap" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice"></svg>
+   <div class="float"><b><i class="fa-solid fa-bell"></i> Muammoingiz yangilandi</b><small>Chilonzordagi chiqindi muammosi jarayonga o‘tkazildi · 2 daqiqa oldin</small></div>
+   <div class="chips"><div class="chip" style="--c:var(--red)"><i></i><span data-n="r">13</span> ta muammo</div><div class="chip" style="--c:var(--yel)"><i></i><span data-n="y">7</span> ta jarayonda</div><div class="chip" style="--c:var(--grn)"><i></i><span data-n="g">42</span> ta hal qilingan</div></div>
+  </div>
+ </div>
+ <div class="wrap sec"><h2>Mahallamiz holati</h2>
+  <div class="g4" style="margin-top:26px">
+   <div class="card stat lift"><div class="ic" style="background:rgba(229,72,77,.13);color:var(--red)"><i class="fa-solid fa-circle-exclamation"></i></div><b data-n="r">13</b><span>Hal qilinmagan</span></div>
+   <div class="card stat lift"><div class="ic" style="background:rgba(242,176,30,.17);color:var(--yel)"><i class="fa-solid fa-clock-rotate-left"></i></div><b data-n="y">7</b><span>Jarayonda</span></div>
+   <div class="card stat lift"><div class="ic" style="background:rgba(22,163,74,.14);color:var(--grn)"><i class="fa-solid fa-circle-check"></i></div><b data-n="g">42</b><span>Hal qilingan</span></div>
+   <div class="card stat lift"><div class="ic"><i class="fa-solid fa-chart-line"></i></div><b data-n="t">62</b><span>Jami muammo</span></div>
+  </div></div>
+ <div class="wrap sec two">
+  <div><h2>AI muammoni o‘zi aniqlaydi</h2>
+   <div class="steps">
+    <div class="card step lift"><div class="ic"><i class="fa-solid fa-camera"></i></div><b>1. Suratga oling</b></div>
+    <div class="card step lift"><div class="ic"><i class="fa-solid fa-robot"></i></div><b>2. AI tahlil qiladi</b></div>
+    <div class="card step lift"><div class="ic"><i class="fa-solid fa-paper-plane"></i></div><b>3. Mas'ul tashkilotga yuboriladi</b></div>
+   </div><button class="btn" style="margin-top:24px" onclick="go('report')">Sinab ko‘rish</button></div>
+  <div class="card demo"><div class="shot"><svg viewBox="0 0 320 200"><rect width="320" height="200" fill="#cfe3ee"/><path d="M0 70h320v130H0z" fill="#e1d9c8"/><path d="M110 70h100l90 130H20z" fill="#5f6770"/><path d="M160 74v14m0 14v18m0 20v26" stroke="#e9e4da" stroke-width="3" stroke-dasharray="10 10"/><ellipse cx="130" cy="150" rx="26" ry="9" fill="#3b4148"/><ellipse cx="205" cy="172" rx="20" ry="7" fill="#3b4148"/><path d="M130 142l-18-14m22 8l6-22m-20 38l-26 6" stroke="#3b4148" stroke-width="2" fill="none"/></svg><div class="scanl"></div><svg class="bx" viewBox="0 0 320 200" style="position:absolute;inset:0"><rect x="96" y="132" width="68" height="36" rx="6" fill="rgba(229,72,77,.15)" stroke="#E5484D" stroke-width="2.5"/></svg></div>
+   <div class="res"><b>“Yo‘l qoplamasi buzilgan”</b><div class="tags"><span>🛣️ Yo‘l</span><span>🔴 Yuqori ustuvorlik</span></div></div></div>
+ </div>
+ <div class="wrap sec"><h2>Mahallangizga yordam bering</h2>
+  <div class="two" style="margin-top:26px;align-items:stretch"><div class="g3" style="grid-template-columns:1fr;gap:14px">
+   <div class="card cm lift"><b>1,248</b><span>👥 faol foydalanuvchi</span></div><div class="card cm lift"><b>62</b><span>🛠️ muammo hal qilindi</span></div><div class="card cm lift"><b>18 soat</b><span>⏱️ o‘rtacha yechim vaqti</span></div></div>
+   <div class="card lb"><h3>Eng faol mahallalar</h3><ul><li><span>🥇</span>Chilonzor<span>42 ta hal qilingan</span></li><li><span>🥈</span>Yunusobod<span>37 ta</span></li><li><span>🥉</span>Yakkasaroy<span>31 ta</span></li></ul></div></div></div>
+ <div class="wrap sec"><h2>Nega YORDAMCHI?</h2>
+  <div class="g4" style="margin-top:26px">
+   <div class="card feat lift"><div class="ic"><i class="fa-solid fa-bolt"></i></div><h3>Tezkor</h3><p>Muammo bir necha daqiqada yuboriladi.</p></div>
+   <div class="card feat lift"><div class="ic"><i class="fa-solid fa-robot"></i></div><h3>AI yordamida</h3><p>Muammo turi avtomatik aniqlanadi.</p></div>
+   <div class="card feat lift"><div class="ic"><i class="fa-solid fa-map-location-dot"></i></div><h3>Ochiq xarita</h3><p>Barcha muammolar xaritada ko‘rinadi.</p></div>
+   <div class="card feat lift"><div class="ic"><i class="fa-solid fa-handshake-angle"></i></div><h3>Hamjamiyat</h3><p>Mahalla aholisi birgalikda muammolarni kuzatadi.</p></div>
+  </div></div>
+ <div class="wrap sec"><div class="lh"><div><h2>Muammoni hal qiladigan ustalar</h2><p class="sub">Mutaxassis bilan to‘g‘ridan-to‘g‘ri bog‘laning.</p></div><button class="btn ghost" onclick="go('masters')">Barcha ustalar</button></div><div class="g3" id="hm"></div></div>
+ <div class="wrap"><div class="band"><h2>Muammoni ko‘rdingizmi? Yordam bering.</h2><p>Bir surat — bir murojaat — bir yechim.</p><button class="btn wh" onclick="go('report')"><i class="fa-solid fa-camera-retro"></i> Muammo yuborish</button></div></div>
+</section>
+
+<!-- REPORT -->
+<section class="pg" id="p-report"><div class="wrap narrow">
+ <h2>Muammo haqida xabar bering</h2>
+ <ol class="stp"><li><b>1</b>Muammo</li><li><b>2</b>Joylashuv</li><li><b>3</b>Yuborish</li></ol>
+ <div class="card pad st on">
+  <div class="dz" id="dz" onclick="$('#file').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();pick(event.dataTransfer.files[0])"><div class="ic"><i class="fa-solid fa-cloud-arrow-up"></i></div><b>Muammo rasmini yuklang</b><small>JPG, PNG — 10 MB gacha</small><button class="lnk" onclick="event.stopPropagation();setImg(SAMPLE,1)">Namuna rasm bilan sinash</button></div>
+  <input type="file" id="file" accept="image/png,image/jpeg" hidden onchange="pick(this.files[0])">
+  <div id="pvbox" hidden><div class="pvimg"><img id="pv" alt="Yuklangan rasm"><div class="scanl" id="sc"></div></div><div class="upb"><i id="upbar"></i></div><button class="lnk" onclick="resetImg()">Rasmni almashtirish</button></div>
+  <div class="ai" id="ai" hidden><div class="aih"><span style="font-size:22px"><i class="fa-solid fa-robot"></i></span><b>YORDAMCHI AI</b><span class="t" id="aist">Rasm tahlil qilinmoqda...</span></div>
+   <div id="airs" hidden style="margin-top:10px"><div class="row"><span>Aniqlandi</span><b id="aik"></b></div><div class="row"><span>Ishonchlilik</span><b id="aic"></b><div class="cbar"><i id="aicb"></i></div></div><div class="row"><span>Mas'ul tashkilot</span><b id="aio"></b></div><div class="row"><span>Joylashuv</span><b id="aid"></b></div></div></div>
+  <h4>Muammo turi</h4><div class="cats" id="cats"></div>
+  <div class="nav2"><span></span><button class="btn" onclick="next(1)">Davom etish →</button></div>
+ </div>
+ <div class="card pad st"><h3>Muammo qayerda?</h3><p class="mut" style="margin:6px 0 14px">Xaritada joyni bosing yoki joylashuvingizni aniqlang.</p>
+  <div class="pickmap"><svg id="pickMap" viewBox="0 0 900 600" onclick="place(event)"></svg></div>
+  <div class="vt"><b id="locd">📍 Chilonzor tumani, Toshkent</b><button class="btn ghost sm" onclick="geo()">Joylashuvim</button></div>
+  <div class="nav2"><button class="btn ghost" onclick="showStep(1)">← Orqaga</button><button class="btn" onclick="next(2)">Davom etish →</button></div></div>
+ <div class="card pad st"><h3>Murojaatni tekshiring</h3><div class="sum" id="sum" style="margin-top:14px"></div>
+  <label class="mut" for="desc" style="font-size:14px;font-weight:600">Qisqacha izoh</label><textarea class="fi" id="desc" style="margin-top:6px"></textarea>
+  <div class="nav2"><button class="btn ghost" onclick="showStep(2)">← Orqaga</button><button class="btn" onclick="submit()">Muammoni yuborish →</button></div></div>
+</div></section>
+
+<!-- MAP -->
+<section class="pg" id="p-map"><div class="wrap">
+ <h2>Mahalladagi muammolar xaritasi</h2><p class="sub">Muammolar qayerda ekanini real vaqtga yaqin ko‘ring.</p>
+ <div class="mgrid"><aside class="card filt">
+  <div class="search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" id="mq" placeholder="Hudud yoki muammo qidirish" oninput="drawMain()" aria-label="Qidirish"></div>
+  <h4>Filtrlash</h4>
+  <label><input type="checkbox" id="fa" checked onchange="allS(this.checked)"> Barchasi</label>
+  <label><input type="checkbox" class="fs" value="r" checked onchange="fS()"> <span class="dot" style="--c:var(--red)"></span> Hal qilinmagan</label>
+  <label><input type="checkbox" class="fs" value="y" checked onchange="fS()"> <span class="dot" style="--c:var(--yel)"></span> Jarayonda</label>
+  <label><input type="checkbox" class="fs" value="g" checked onchange="fS()"> <span class="dot" style="--c:var(--grn)"></span> Hal qilingan</label>
+  <h4>Kategoriya</h4><div class="cs" id="catf"></div><div class="cnt" id="mcount"></div>
+ </aside>
+ <div class="mapwrap"><svg id="mainMap" viewBox="0 0 900 600" onclick="if(!event.target.closest('.mk'))closePop()"></svg><div class="pop" id="pop"></div></div></div>
+</div></section>
+
+<!-- LIST -->
+<section class="pg" id="p-list"><div class="wrap">
+ <div class="lh"><div><h2>Muammolar</h2><p class="sub">Mahalladagi barcha murojaatlar bir joyda.</p></div><div class="search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" class="fi" id="lq" placeholder="Qidirish: chiqindi, Chilonzor..." oninput="drawList()" aria-label="Qidirish"></div></div>
+ <div class="pills" id="lp" style="margin-bottom:22px"></div><div class="g3" id="lg"></div>
+</div></section>
+
+<!-- STATS -->
+<section class="pg" id="p-stats"><div class="wrap">
+ <h2>Statistika</h2><p class="sub">Murojaatlar real vaqtda yangilanadi.</p>
+ <div class="g3" style="margin:26px 0 18px"><div class="card cm"><b data-n="t">62</b><span>Jami murojaat</span></div><div class="card cm"><b>18 soat</b><span>O‘rtacha yechim vaqti</span></div><div class="card cm"><b>94%</b><span>AI aniqligi</span></div></div>
+ <div class="two" style="align-items:stretch"><div class="card pad"><h3>Muammo turlari bo‘yicha</h3><div class="donut" style="margin-top:18px" id="donut"></div></div>
+ <div class="card pad"><h3>Haftalik murojaatlar</h3><div class="bars" id="bars"></div></div></div>
+</div></section>
+
+<!-- MINE -->
+<section class="pg" id="p-mine"><div class="wrap narrow"><h2>Mening murojaatlarim</h2><p class="sub">Yuborgan murojaatlaringiz holati.</p><div style="margin-top:26px" id="mine"></div></div></section>
+
+<!-- CHAT -->
+<section class="pg" id="p-chat"><div class="wrap"><h2>Suhbatlar</h2><p class="sub">Ustalar bilan yozishmalaringiz tarixi.</p><div class="card chatgrid"><aside id="cl"></aside><div id="ct"></div></div></div></section>
+
+<!-- MASTERS -->
+<section class="pg" id="p-masters"><div class="wrap">
+ <h2>Ustalar</h2><p class="sub">Muammolarni hal qiladigan mutaxassislar. Qo‘ng‘iroq qiling yoki Telegramda yozing.</p>
+ <div class="pills" id="mp" style="margin:22px 0"></div><div class="g3" id="mg"></div>
+</div></section>
+
+<!-- ADMIN -->
+<section class="pg" id="p-admin"><div class="wrap">
+ <h2>Mas'ul tashkilot paneli</h2><p class="sub">Murojaatlarni qabul qiling va holatini yangilang.</p>
+ <div class="g3" style="margin:26px 0 18px"><div class="card stat"><span>Yangi murojaatlar</span><b data-n="r" style="margin-top:10px;color:var(--red)">13</b></div><div class="card stat"><span>Jarayonda</span><b data-n="y" style="margin-top:10px;color:#C98F00">7</b></div><div class="card stat"><span>Bugun hal qilingan</span><b data-n="td" style="margin-top:10px;color:var(--grn)">8</b></div></div>
+ <div class="card tw"><table><thead><tr><th>Muammo</th><th>Hudud</th><th>Sana</th><th>Status</th><th></th></tr></thead><tbody id="atb"></tbody></table></div>
+</div></section>
+
+<!-- PROFILE -->
+<section class="pg" id="p-profile"><div class="wrap narrow"><div class="card pad" id="pcard"></div>
+ <h3 style="margin:28px 0 10px">Bildirishnomalar</h3><div class="card" style="padding:10px" id="pn"></div>
+ <div class="nav2" style="justify-content:flex-start"><button class="btn ghost" onclick="go('mine')">Mening murojaatlarim</button><button class="btn ghost" onclick="cur=null;go('chat')">Suhbatlar</button><button class="btn ghost" onclick="go('admin')">Mas'ul tashkilot paneli</button></div></div></section>
+</main>
+
+<footer><div class="wrap"><div><b>YORDAMCHI</b><br><span>Mahalla muammolarini birgalikda hal qilamiz.</span></div><a onclick="go('admin')">Mas'ul tashkilot paneli</a><span>© 2026 YORDAMCHI</span></div></footer>
+
+<nav class="bn" id="bn"></nav>
+<div id="toasts"></div><div class="modal" id="modal" onclick="if(event.target==this)closeM()"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
